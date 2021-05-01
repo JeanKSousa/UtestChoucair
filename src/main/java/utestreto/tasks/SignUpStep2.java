@@ -8,17 +8,24 @@ import net.serenitybdd.screenplay.actions.Enter;
 import utestreto.userinterface.UtestSignUpStep2Page;
 
 public class SignUpStep2 implements Task {
+    private String strCity;
+    private String strPostal;
 
-    public static SignUpStep2 onThePageStep2() {
-        return Tasks.instrumented(SignUpStep2.class);
+    public SignUpStep2(String strCity, String strPostal) {
+        this.strCity = strCity;
+        this.strPostal = strPostal;
+    }
+
+    public static SignUpStep2 onThePageStep2(String strCity, String strPostal) {
+        return Tasks.instrumented(SignUpStep2.class, strCity, strPostal);
     }
 
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
 
-                Enter.theValue("Veracruz, Panama").into(UtestSignUpStep2Page.INPUT_CITY),
-                Enter.theValue("507").into(UtestSignUpStep2Page.INPUT_POSTAL),
+                Enter.theValue(strCity).into(UtestSignUpStep2Page.INPUT_CITY),
+                Enter.theValue(strPostal).into(UtestSignUpStep2Page.INPUT_POSTAL),
                 Click.on(UtestSignUpStep2Page.NEXT_BUTTON)
         );
     }

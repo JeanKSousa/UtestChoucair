@@ -24,12 +24,12 @@ public class UtestStepDefinition {
     }
 
     @When("^He enters the data of the new user to the form$")
-    public void Heentersthedataofthenewusertotheform(){
+    public void Heentersthedataofthenewusertotheform(List<UtestData> utestData) throws Exception {
         OnStage.theActorInTheSpotlight().attemptsTo(
-                SignUpStep1.onThePageStep1(),
-                SignUpStep2.onThePageStep2(),
+                SignUpStep1.onThePageStep1(utestData.get(0).getStrFirstName(),utestData.get(0).getStrLastName(), utestData.get(0).getStrEmail(),utestData.get(0).getStrMonth(), utestData.get(0).getStrDay(),utestData.get(0).getStrYear()),
+                SignUpStep2.onThePageStep2(utestData.get(0).getStrCity(), utestData.get(0).getStrPostal()),
                 SignUpStep3.onThePageStep3(),
-                SignUpStep4.onThePageStep4()
+                SignUpStep4.onThePageStep4(utestData.get(0).getStrPassword())
         );
     }
 
